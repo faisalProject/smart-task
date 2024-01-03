@@ -23,7 +23,7 @@
       Swal.fire({
         position: 'top-center',
         icon: 'error',
-        title: document.getElementById("msg").value,
+        html: document.getElementById("msg").value,
         showConfirmButton: false,
         timer: 1500
       })
@@ -33,7 +33,7 @@
       Swal.fire({
         position: 'top-center',
         icon: 'success',
-        title: document.getElementById("msg").value,
+        html: document.getElementById("msg").value,
         showConfirmButton: false,
         timer: 1500
       }).then(function() {
@@ -41,11 +41,23 @@
       })
     }
 
+    function errorRegister() {
+      Swal.fire({
+        position: 'top-center',
+        icon: 'error',
+        html: document.getElementById("msg").value,
+        showConfirmButton: false,
+        timer: 1500
+      }).then(function() {
+        window.location.href = 'register';
+      })
+    }
+
     function successLoginUser() {
       Swal.fire({
         position: 'top-center',
         icon: 'success',
-        title: document.getElementById("msg").value,
+        html: document.getElementById("msg").value,
         showConfirmButton: false,
         timer: 1500
       }).then(function() {
@@ -57,11 +69,11 @@
       Swal.fire({
         position: 'top-center',
         icon: 'success',
-        title: document.getElementById("msg").value,
+        html: document.getElementById("msg").value,
         showConfirmButton: false,
         timer: 1500
       }).then(function() {
-        window.location.href = 'dashboard';
+        window.location.href = 'admin/dashboard';
       })
     }
   </script>

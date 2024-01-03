@@ -34,6 +34,11 @@
         $task->destroy($conn, $_GET['id']);
     }
 
+    // Finished
+    if ( isset($_POST['done']) ) {
+        $task->finished($_POST, $conn);
+    }
+
     // Header
     include 'layouts/header.php';
 
@@ -63,6 +68,7 @@
                         <th>Name</th>
                         <th>Kategory</th>
                         <th>Prioritas</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -81,6 +87,13 @@
                                 <?php else : ?>
                                     <td>Rendah</td>
                                 <?php endif; ?>
+                                <td>
+                                    <?php if ( $row['status'] === 'finished' ) : ?>
+                                        <p>Selesai</p>
+                                    <?php else : ?>
+                                        <p>Belum selesai</p>
+                                    <?php endif; ?>
+                                </td>
                                 <td>
                                     <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
                                         <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-pencil-square"></i></button>

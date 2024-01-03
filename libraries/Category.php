@@ -50,7 +50,7 @@
             $updated_date = $created_date;
 
             if ( strlen($name) > 255 ) {
-                $message = 'Nama terlalu panjang!';
+                $message = '<p><b>Nama terlalu panjang!</b></p>';
                 echo "<body onload='errorCategory()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
@@ -74,7 +74,7 @@
             
             // Kondisi jika query berhasil 
             if ( $isSuccess === 1 ) {
-                $message = 'Kategori berhasil ditambahkan!';
+                $message = '<p><b>Kategori berhasil ditambahkan!</b></p>';
                 echo "<body onload='successCategory()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
@@ -89,7 +89,7 @@
             $updated_date = date('Y-m-d H:i:s', time());
 
             if ( strlen($name) > 255 ) {
-                $message = 'Nama terlalu panjang!';
+                $message = '<p><b>Nama terlalu panjang!</b></p>';
                 echo "<body onload='errorCategory()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
@@ -105,7 +105,7 @@
 
             // Kondisi jika query berhasil 
             if ( $isSuccess === 1 ) {
-                $message = 'Kategori berhasil disunting!';
+                $message = '<p><b>Kategori berhasil disunting!</b></p>';
                 echo "<body onload='successCategory()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
@@ -119,7 +119,7 @@
             $isSuccess = mysqli_affected_rows($conn);
             // Kondisi jika query berhasil 
             if ( $isSuccess === 1 ) {
-                $message = 'Kategori berhasil dihapus!';
+                $message = '<p><b>Kategori berhasil dihapus!</b></p>';
                 echo "<body onload='successCategory()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }

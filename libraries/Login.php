@@ -38,21 +38,21 @@
                     $_SESSION['role'] = $user['role'];
 
                     if ( $user['role'] === 'user' ) {
-                        $message = 'Selamat datang di SmartTask!';
+                        $message = '<p><b>Selamat datang di SmartTask!</b></p>';
                         echo "<body onload='successLoginUser()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                         return false;
                     } else {
-                        $message = 'Selamat datang di SmartTask!';
+                        $message = '<p><b>Selamat datang di SmartTask!</b></p>';
                         echo "<body onload='successLoginAdmin()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                         return false;
                     }
                 } else {
-                    $message = 'Email atau password salah!';
+                    $message = '<p><b>Email atau password salah!</b></p>';
                     echo "<body onload='error()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                     return false;
                 }
             } else {
-                $message = 'Email atau password salah!';
+                $message = '<p><b>Email atau password salah!</b></p>';
                 echo "<body onload='error()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }

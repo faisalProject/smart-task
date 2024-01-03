@@ -24,19 +24,25 @@
             $password = htmlspecialchars($data['password']);
             $confirm_password = htmlspecialchars($data['confirm-password']);
 
+            if ( strlen($username) > 50 ) {
+                $message = '<p><b>Username lebih dari 50 kata!</b></p>';
+                echo "<body onload='errorRegister()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
+                return false;
+            }
+
             // Cek email apakah sudah terdaftar
             $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
             
             // Kondisi jika data berhasil ditemukan
             if ( mysqli_num_rows($result) === 1 ) {
-                $message = 'Email sudah terdaftar!';
+                $message = '<p><b>Email sudah terdaftar!</b></p>';
                 echo "<body onload='error()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
             
             // Cek password apakah sama dengan konfirmasi password
             if ( $password !== $confirm_password ) {
-                $message = 'Password tidak sesuai!';
+                $message = '<p><b>Password tidak sesuai!</b></p>';
                 echo "<body onload='error()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
@@ -67,7 +73,7 @@
 
             // Kondisi jika query berhasil 
             if ( $isSuccess === 1 ) {
-                $message = 'Akun berhasil terdaftar!';
+                $message = '<p><b>Akun berhasil terdaftar!</b></p>';
                 echo "<body onload='successRegister()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }

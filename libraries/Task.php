@@ -15,7 +15,7 @@
         // Fungsi untuk menampilkan daftar tugas
         public function index($conn, $user_id) 
         {   
-            $result = mysqli_query($conn, "SELECT t.id, t.name as name, t.priority, t.description, t.deadlines, t.updated_date, c.id as cat_id, c.name as desc_name FROM task t 
+            $result = mysqli_query($conn, "SELECT t.id, t.name as name, t.priority, t.description, t.deadlines, t.status, t.updated_date, c.id as cat_id, c.name as desc_name FROM task t 
             left join categories c on t.category_id = c.id WHERE t.user_id = '$user_id' AND t.status_deleted = 0 ORDER BY t.updated_date DESC");
 
             $rows = array();
@@ -65,7 +65,7 @@
             $updated_date = $created_date;
 
             if ( strlen($name) > 255 ) {
-                $message = 'Nama terlalu panjang!';
+                $message = '<p><b>Nama terlalu panjang!</b></p>';
                 echo "<body onload='errorTask()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
@@ -99,7 +99,7 @@
 
             // Kondisi jika berhasil
             if ( $isSuccess === 1 ) {
-                $message = 'Tugas berhasil ditambahkan!';
+                $message = '<p><b>Tugas berhasil ditambahkan!</b></p>';
                 echo "<body onload='successTask()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
@@ -117,7 +117,7 @@
             $updated_date = date('Y-m-d H:i:s', time());
 
             if ( strlen($name) > 255 ) {
-                $message = 'Nama terlalu panjang!';
+                $message = '<p><b>Nama terlalu panjang!</b></p>';
                 echo "<body onload='errorTask()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
@@ -137,7 +137,7 @@
             $isSuccess = mysqli_affected_rows($conn);
 
             if ( $isSuccess === 1 ) {
-                $message = 'Tugas berhasil disunting!';
+                $message = '<p><b>Tugas berhasil disunting!</b></p>';
                 echo "<body onload='successTask()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
@@ -151,7 +151,21 @@
 
             // Kondisi jika sukses
             if ( $isSuccess === 1 ) {
-                $message = 'Tugas berhasil dihapus!';
+                $message = '<p><b>Tugas berhasil dihapus!</b></p>';
+                echo "<body onload='successTask()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
+                return false;
+            }
+        }
+
+        public function finished($data, $conn) {
+            $id = $data['id'];
+            mysqli_query($conn, "UPDATE task SET status = 'finished' WHERE id = '$id'");
+
+            $isSuccess = mysqli_affected_rows($conn);
+
+            // Kondisi jika sukses
+            if ( $isSuccess === 1 ) {
+                $message = '<p><b>Tugas berhasil diselesaikan!</b></p>';
                 echo "<body onload='successTask()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
