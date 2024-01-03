@@ -49,6 +49,12 @@
             $created_date = date('Y-m-d H:i:s', time());
             $updated_date = $created_date;
 
+            if ( strlen($name) > 255 ) {
+                $message = 'Nama terlalu panjang!';
+                echo "<body onload='errorCategory()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
+                return false;
+            }
+
             // Query untuk tambah kategori
             mysqli_query($conn, "INSERT INTO categories (
                 user_id,
@@ -81,6 +87,12 @@
             $id = $data['id'];
             $name = htmlspecialchars($data['name']);
             $updated_date = date('Y-m-d H:i:s', time());
+
+            if ( strlen($name) > 255 ) {
+                $message = 'Nama terlalu panjang!';
+                echo "<body onload='errorCategory()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
+                return false;
+            }
 
             // Query untuk edit kategori
             mysqli_query($conn, "UPDATE categories SET 

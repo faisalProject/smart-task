@@ -659,16 +659,24 @@ h6 {
   padding: 0;
   margin: 0;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.sidebar-nav li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+.sidebar-nav > a {
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 600;
+  color: #012970;
+  border-radius: 4px;
 }
 
-.sidebar-nav .nav-item {
-  margin-bottom: 5px;
+.sidebar-nav > a:hover {
+  background-color: rgba(65, 84, 241, .05);
+  color: #4154f1;
 }
 
 .sidebar-nav .nav-heading {

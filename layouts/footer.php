@@ -58,6 +58,18 @@
       })
     }
 
+    function errorCategory() {
+      Swal.fire({
+        position: 'top-center',
+        icon: 'error',
+        title: document.getElementById("msg").value,
+        showConfirmButton: false,
+        timer: 1500
+      }).then(function() {
+        window.location.href = 'category-list';
+      })
+    }
+
     var deleteCategory = (id) => {
       Swal.fire({
           title: 'Apakah kamu yakin',
@@ -100,6 +112,18 @@
       Swal.fire({
         position: 'top-center',
         icon: 'success',
+        title: document.getElementById("msg").value,
+        showConfirmButton: false,
+        timer: 1500
+      }).then(function() {
+        window.location.href = 'task-list';
+      })
+    }
+
+    function errorTask() {
+      Swal.fire({
+        position: 'top-center',
+        icon: 'error',
         title: document.getElementById("msg").value,
         showConfirmButton: false,
         timer: 1500

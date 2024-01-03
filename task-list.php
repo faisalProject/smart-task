@@ -86,6 +86,8 @@
                                         <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-pencil-square"></i></button>
                                         <?php include 'task-edit.php'; ?>
                                         <a href="#" onclick="deleteTask(<?= $row['id'] ?>)" class="btn btn-danger" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px"><i class="bi bi-trash3-fill"></i></a>
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#view<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-eye"></i></button>
+                                        <?php include 'task-view.php'; ?>
                                     </div>
                                 </td>
                             </tr>

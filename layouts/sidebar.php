@@ -1,26 +1,21 @@
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+    <div class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link" href="dashboard">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="task-list">
-          <i class="bi bi-grid"></i>
-          <span>Daftar Tugas</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="category-list">
-          <i class="bi bi-grid"></i>
-          <span>Daftar Kategori</span>
-        </a>
-      </li>
+      <a href="dashboard">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="task-list">
+        <i class="bi bi-list-task"></i>
+        <span>Daftar Tugas</span>
+      </a>
+      <a href="category-list">
+        <i class="bi bi-tags-fill"></i>
+        <span>Daftar Kategori</span>
+      </a>
+
     </ul>
 
   </aside><!-- End Sidebar-->

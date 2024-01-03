@@ -64,6 +64,12 @@
             $created_date = date('Y-m-d H:i:s', time());
             $updated_date = $created_date;
 
+            if ( strlen($name) > 255 ) {
+                $message = 'Nama terlalu panjang!';
+                echo "<body onload='errorTask()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
+                return false;
+            }
+
             // Query untuk tambah tugas
             mysqli_query($conn, "INSERT INTO task (
                 user_id,
@@ -109,6 +115,12 @@
             $priority = htmlspecialchars($data['priority']);
             $category_id = htmlspecialchars($data['category_id']);
             $updated_date = date('Y-m-d H:i:s', time());
+
+            if ( strlen($name) > 255 ) {
+                $message = 'Nama terlalu panjang!';
+                echo "<body onload='errorTask()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
+                return false;
+            }
 
             // Query edit tugas
             mysqli_query($conn, "UPDATE task SET
