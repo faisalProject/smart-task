@@ -43,12 +43,18 @@
                 </select>
                 <label for="category" style="font-weight: 600;">Kategori</label>
                 <select class="category-edit form-control" id="category" name="category_id" style="height: 35px; width: 100%" required>
-                    <?php foreach ( $categories as $c ) : ?>
-                        <?php if ( $c['name'] !== $row['desc_name'] ) : ?>
-                            <option selected value="<?= $row['cat_id'] ?>"><?= $row['desc_name'] ?></option>
+                    <?php if ( count($categories) > 1 ) : ?>
+                        <?php foreach ( $categories as $c ) : ?>
+                            <?php if ( $c['name'] !== $row['desc_name'] ) : ?>
+                                <option selected value="<?= $row['cat_id'] ?>"><?= $row['desc_name'] ?></option>
+                                <option value="<?= $c['id']; ?>"><?= $c['name']; ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <?php foreach ( $categories as $c ) : ?>
                             <option value="<?= $c['id']; ?>"><?= $c['name']; ?></option>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </select>
             </div>
             <div class="modal-footer">
