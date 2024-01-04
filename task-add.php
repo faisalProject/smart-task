@@ -23,7 +23,7 @@
                 <label for="description">Deskripsi</label>
                 <textarea name="description" id="description" class="form-control" cols="30" rows="5" required></textarea>
                 <label for="deadline">Tenggat Waktu</label>
-                <input type="date" class="form-control" name="deadlines" id="deadline" required>
+                <input type="datetime-local" class="form-control" name="deadlines" id="deadline" required>
                 <label for="priority-add">Prioritas</label>
                 <select class="form-control" id="priority-add" style="height: 35px; width: 100%" name="priority" required>
                         <option value="low">Rendah</option>

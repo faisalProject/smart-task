@@ -1,3 +1,8 @@
+<!-- ======= Footer ======= -->
+<footer style="display: flex; justify-content: center; align-items: center; width: 100%; border-top: 1px solid #cddfff; height: 70px;">
+  <p style="margin-bottom: 0 !important;">© 2023. Designed by Faisal</p>
+</footer><!-- End Footer -->
+
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->

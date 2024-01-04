@@ -70,6 +70,12 @@
                 return false;
             }
 
+            if ( $category_id === null ) {
+                $message = '<p><b>Harap isi kategori terlebih dahulu!</b></p>';
+                echo "<body onload='errorTask()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
+                return false;
+            }
+
             // Query untuk tambah tugas
             mysqli_query($conn, "INSERT INTO task (
                 user_id,
@@ -169,6 +175,27 @@
                 echo "<body onload='successTask()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
                 return false;
             }
+        }
+
+        public function timeline($conn, $user_id)
+        {
+            $result = mysqli_query($conn, "SELECT 
+            t.id,
+            t.user_id,
+            t.name,
+            FLOOR(TIMESTAMPDIFF(MINUTE, NOW(), t.deadlines) / 1440) AS days,
+            FLOOR((TIMESTAMPDIFF(MINUTE, NOW(), t.deadlines) % 1440) / 60) AS hours,
+            TIMESTAMPDIFF(MINUTE, NOW(), t.deadlines) % 60 AS minutes,
+            c.name as cat_name
+            FROM task t
+            LEFT JOIN categories c on t.category_id = c.id WHERE t.user_id = '$user_id' AND deadlines IS NOT NULL AND t.status_deleted = 0 AND t.status = 'unfinished'");
+
+            $rows = array();
+            while ( $row = mysqli_fetch_assoc($result) ) {
+                $rows[] = $row;
+            }
+
+            return $rows;
         }
     }
 

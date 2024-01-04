@@ -24,7 +24,7 @@
                 <label for="description	" style="font-weight: 600;">Deskripsi</label>
                 <textarea name="description" id="description" class="form-control" cols="30" rows="5" required><?= $row['description'] ?></textarea>
                 <label for="deadline">Tenggat Waktu</label>
-                <input type="date" class="form-control" value="<?= $row['deadlines'] ?>" name="deadlines" id="deadline" required>
+                <input type="datetime-local" class="form-control" value="<?= $row['deadlines'] ?>" name="deadlines" id="deadline" required>
                 <label for="priority">Prioritas</label>
                 <select class="priority-edit form-control" id="priority" style="height: 35px; width: 100%" name="priority" required>
                     <?php if ( $row['priority'] === 'high' ) : ?>

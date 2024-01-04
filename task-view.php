@@ -37,11 +37,11 @@
                         <td>:</td>
                         <td>
                             <?php if ( $row['priority'] === 'high' ) : ?>
-                                <p>Tinggi</p>
+                                <p style="margin-bottom: 0 !important;">Tinggi</p>
                             <?php elseif ( $row['priority'] === 'currently' ) : ?>
-                                <p>Sedang</p>
+                                <p style="margin-bottom: 0 !important;">Sedang</p>
                             <?php else : ?>
-                                <p>Rendah</p>
+                                <p style="margin-bottom: 0 !important;">Rendah</p>
                             <?php endif; ?>
                         </td>
                     </tr>
@@ -50,9 +50,9 @@
                         <td>:</td>
                         <td>
                             <?php if ( $row['status'] === 'finished' ) : ?>
-                                <p>Selesai</p> 
+                                <p style="margin-bottom: 0 !important;">Selesai</p> 
                             <?php else : ?>   
-                                <p>Belum selesai</p>
+                                <p style="margin-bottom: 0 !important;">Belum selesai</p>
                             <?php endif; ?> 
                         </td>
                     </tr>
