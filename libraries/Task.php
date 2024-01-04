@@ -31,12 +31,8 @@
         {
             $result = mysqli_query($conn, "SELECT count(*) as finished FROM task where user_id = '$user_id' AND status_deleted = 0 AND status = 'finished'");
 
-            $rows = array();
-            while ( $row = mysqli_fetch_assoc($result) ) {
-                $rows = $row;
-            };
-
-            return $rows;
+            $row = mysqli_fetch_assoc($result); 
+            return $row;
         }
 
         // Fungsi menampilkan daftar tugas yang unfinished
@@ -44,12 +40,8 @@
         {  
             $result = mysqli_query($conn, "SELECT count(*) as unfinished FROM task where user_id = '$user_id' AND status_deleted = 0 AND status = 'unfinished'");
 
-            $rows = array();
-            while ( $row = mysqli_fetch_assoc($result) ) {
-                $rows = $row;
-            };
-
-            return $rows;
+            $row = mysqli_fetch_assoc($result);
+            return $row;
         }
 
         // Fungsi untuk tambah tugas
@@ -188,7 +180,7 @@
             TIMESTAMPDIFF(MINUTE, NOW(), t.deadlines) % 60 AS minutes,
             c.name as cat_name
             FROM task t
-            LEFT JOIN categories c on t.category_id = c.id WHERE t.user_id = '$user_id' AND deadlines IS NOT NULL AND t.status_deleted = 0 AND t.status = 'unfinished'");
+            LEFT JOIN categories c on t.category_id = c.id WHERE t.user_id = '$user_id' AND deadlines IS NOT NULL AND t.status_deleted = 0 AND t.status = 'unfinished' ORDER BY t.deadlines ASC");
 
             $rows = array();
             while ( $row = mysqli_fetch_assoc($result) ) {

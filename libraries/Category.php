@@ -33,12 +33,8 @@
         {
             $result = mysqli_query($conn, "SELECT COUNT(*) as categories FROM categories WHERE user_id = '$user_id' AND status_deleted = 0");
 
-            $rows = array();
-            while ( $row = mysqli_fetch_assoc($result) ) {
-                $rows = $row;
-            };
-
-            return $rows;
+            $row = mysqli_fetch_assoc($result);
+            return $row;
         }
 
         // Fungsi untuk tambah kategori
