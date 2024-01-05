@@ -7,7 +7,7 @@
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-        <a href="task-list">
+        <a href="account-list">
           <i class="bi bi-people-fill"></i>
           <span>Daftar Akun</span>
         </a>

@@ -42,13 +42,23 @@
             <div class="card-body">
               <h5 class="card-title">Daftar Kategori</h5>
               
-              <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add" style="display: flex; justify-content: center; align-items: center; width: 130px; border-radius: 4px; gap: 10px">
-                <i class="bi bi-plus-circle-fill"></i> Tambah
-            </button>
-            <?php
-                include 'category-add.php';
-            ?>
+            <?php if ( $_SESSION['status_banned'] == 0 ) : ?>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add" style="display: flex; justify-content: center; align-items: center; width: 130px; border-radius: 4px; gap: 10px">
+                    <i class="bi bi-plus-circle-fill"></i> Tambah
+                </button>
+                <?php
+                    include 'category-add.php';
+                ?>
+            <?php else : ?>
+                <div style="display: flex; flex-direction: column; gap: 10px">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add" style="display: flex; justify-content: center; align-items: center; width: 130px; border-radius: 4px; gap: 10px; pointer-events: none">
+                        <i class="bi bi-plus-circle-fill"></i> Tambah
+                    </button>
+                    <p class="text-danger" style="font-weight: 600; margin-bottom: 0 !important">Akun Anda di banned, sehingga akses pada fitur terbatas</p>
+                </div>
+            <?php endif; ?>
+
             <!-- Table with stripped rows -->
             <div style="width: 100%; overflow: auto;">
                 <table class="table datatable">
@@ -71,11 +81,19 @@
                                     <td><?= $row['created_date'] ?></td>
                                     <td><?= $row['updated_date'] ?></td>
                                     <td>
-                                        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-                                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-pencil-square"></i></button>
-                                            <?php include 'category-edit.php'; ?>
-                                            <a href="#" onclick="deleteCategory(<?= $row['id'] ?>)" class="btn btn-danger" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px"><i class="bi bi-trash3-fill"></i></a>
-                                        </div>
+                                        <?php if ( $_SESSION['status_banned'] == 0 ) : ?>
+                                            <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-pencil-square"></i></button>
+                                                <?php include 'category-edit.php'; ?>
+                                                <a href="#" onclick="deleteCategory(<?= $row['id'] ?>)" class="btn btn-danger" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px"><i class="bi bi-trash3-fill"></i></a>
+                                            </div>
+                                        <?php else : ?>
+                                            <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px; pointer-events: none"><i class="bi bi-pencil-square"></i></button>
+                                                <?php include 'category-edit.php'; ?>
+                                                <a href="#" onclick="deleteCategory(<?= $row['id'] ?>)" class="btn btn-danger" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px; pointer-events: none"><i class="bi bi-trash3-fill"></i></a>
+                                            </div>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php $no++ ?>

@@ -23,6 +23,7 @@
                     $_SESSION['username'] = $user['username'];
                     $_SESSION['email'] = $user['email'];
                     $_SESSION['role'] = $user['role'];
+                    $_SESSION['status_banned'] = $user['status_banned'];
 
                     if ( $user['role'] === 'user' ) {
                         $message = '<p><b>Selamat datang di SmartTask!</b></p>';

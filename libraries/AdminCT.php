@@ -2,9 +2,17 @@
 
     class AdminCT  
     {
-        public function showAccount($conn)
+        public function showAccountUser($conn)
         {
             $result = mysqli_query($conn, "SELECT COUNT(*) as users FROM users WHERE role = 'user'");
+
+            $row = mysqli_fetch_assoc($result);
+            return $row;
+        }
+
+        public function showAccountAdmin($conn)
+        {
+            $result = mysqli_query($conn, "SELECT COUNT(*) as admin FROM users WHERE role = 'admin'");
 
             $row = mysqli_fetch_assoc($result);
             return $row;
@@ -46,6 +54,18 @@
             c.name as cat_name
             FROM task t
             LEFT JOIN categories c on t.category_id = c.id WHERE t.deadlines IS NOT NULL AND t.status_deleted = 0 AND t.status = 'unfinished' ORDER BY t.deadlines ASC");
+
+            $rows = array();
+            while ( $row = mysqli_fetch_assoc($result) ) {
+                $rows[] = $row;
+            }
+
+            return $rows;
+        }
+
+        public function listUserAccount($conn)
+        {
+            $result = mysqli_query($conn, "SELECT id, username as name, email, status_banned, role, created_date, updated_date FROM users WHERE role = 'user'");
 
             $rows = array();
             while ( $row = mysqli_fetch_assoc($result) ) {

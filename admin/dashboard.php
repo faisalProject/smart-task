@@ -10,7 +10,8 @@
 
     $adminObject = new AdminCT();
 
-    $accounts = $adminObject->showAccount($conn);
+    $accountsUser = $adminObject->showAccountUser($conn);
+    $accountsAdmin = $adminObject->showAccountAdmin($conn);
     $finished = $adminObject->showTaskByFinished($conn);
     $unfinished = $adminObject->showTaskByUnfinished($conn);
     $categories = $adminObject->showCategories($conn);
@@ -27,13 +28,13 @@
     <main id="main" class="main">
 
     <div class="pagetitle">
-    <h1>Dashboard</h1>
-    <nav>
-        <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-    </nav>
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </nav>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
@@ -45,29 +46,50 @@
 
                 <!-- Sales Card -->
                 <div class="col-xxl-4 col-md-6">
-                <div class="card info-card sales-card">
+                    <div class="card info-card sales-card">
 
-                    <div class="card-body">
-                    <h5 class="card-title">Akun <span>| Semua</span></h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Akun <span>| Admin</span></h5>
 
-                    <div class="d-flex align-items-center">
-                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-people-fill"></i>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people-fill"></i>
+                                </div>
+                                <div class="ps-3">
+                                <h6><?= $accountsAdmin['admin'] ?></h6>
+                                <span class="text-muted small pt-2 ps-1">Daftar Akun</span>
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="ps-3">
-                        <h6><?= $accounts['users'] ?></h6>
-                        <span class="text-muted small pt-2 ps-1">Daftar Akun</span>
 
+                    </div>
+                </div><!-- End Sales Card -->
+
+                <div class="col-xxl-4 col-md-6">
+                    <div class="card info-card sales-card">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Akun <span>| Users</span></h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-people-fill"></i>
+                                </div>
+                                <div class="ps-3">
+                                <h6><?= $accountsUser['users'] ?></h6>
+                                <span class="text-muted small pt-2 ps-1">Daftar Akun</span>
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    </div>
 
-                </div>
+                    </div>
                 </div><!-- End Sales Card -->
 
                 <!-- Sales Card -->
                 <div class="col-xxl-4 col-md-6">
-                <div class="card info-card sales-card">
+                <div class="card info-card revenue-card">
 
                     <div class="card-body">
                     <h5 class="card-title">Tugas <span>| Selesai</span></h5>

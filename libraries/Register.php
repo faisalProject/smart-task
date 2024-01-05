@@ -45,6 +45,7 @@
                 email, 
                 password, 
                 role, 
+                status_banned,
                 created_date, 
                 updated_date
             ) VALUES (
@@ -52,6 +53,7 @@
                 '$email',
                 '$password',
                 'user',
+                0,
                 '$created_date',
                 '$updated_date'
             )");

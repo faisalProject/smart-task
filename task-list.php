@@ -56,12 +56,22 @@
               <h5 class="card-title">Daftar Tugas</h5>
               
               <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add" style="display: flex; justify-content: center; align-items: center; width: 130px; border-radius: 4px; gap: 10px">
-                <i class="bi bi-plus-circle-fill"></i> Tambah
-            </button>
-            <?php
-                include 'task-add.php';
-            ?>
+            <?php if ( $_SESSION['status_banned'] == 0 ) : ?>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add" style="display: flex; justify-content: center; align-items: center; width: 130px; border-radius: 4px; gap: 10px">
+                    <i class="bi bi-plus-circle-fill"></i> Tambah
+                </button>
+                <?php
+                    include 'task-add.php';
+                ?>
+            <?php else : ?>
+                <div style="display: flex; flex-direction: column; gap: 10px">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add" style="display: flex; justify-content: center; align-items: center; width: 130px; border-radius: 4px; gap: 10px; pointer-events: none">
+                        <i class="bi bi-plus-circle-fill"></i> Tambah
+                    </button>
+                    <p class="text-danger" style="font-weight: 600; margin-bottom: 0 !important">Akun Anda di banned, sehingga akses pada fitur terbatas</p>
+                </div>
+            <?php endif; ?>
+
             <!-- Table with stripped rows -->
             <div style="width: 100%; overflow: auto;">
             <table class="table datatable">
@@ -98,13 +108,23 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-pencil-square"></i></button>
-                                        <?php include 'task-edit.php'; ?>
-                                        <a href="#" onclick="deleteTask(<?= $row['id'] ?>)" class="btn btn-danger" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px"><i class="bi bi-trash3-fill"></i></a>
-                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#view<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-eye"></i></button>
-                                        <?php include 'task-view.php'; ?>
-                                    </div>
+                                    <?php if ( $_SESSION['status_banned'] == 0 ) : ?>
+                                        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-pencil-square"></i></button>
+                                            <?php include 'task-edit.php'; ?>
+                                            <a href="#" onclick="deleteTask(<?= $row['id'] ?>)" class="btn btn-danger" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px"><i class="bi bi-trash3-fill"></i></a>
+                                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#view<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-eye"></i></button>
+                                            <?php include 'task-view.php'; ?>
+                                        </div>
+                                    <?php else : ?>
+                                        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px; pointer-events: none"><i class="bi bi-pencil-square"></i></button>
+                                            <?php include 'task-edit.php'; ?>
+                                            <a href="#" onclick="deleteTask(<?= $row['id'] ?>)" class="btn btn-danger" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px; pointer-events: none"><i class="bi bi-trash3-fill"></i></a>
+                                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#view<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px; pointer-events: none"><i class="bi bi-eye"></i></button>
+                                            <?php include 'task-view.php'; ?>
+                                        </div>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php $no++ ?>
