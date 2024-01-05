@@ -1,20 +1,7 @@
 <?php
 
-    // Class child turunan dari class Database
-    class Login extends Database 
+    class Login
     {
-        // Fungsi turunan dari kelas Databse, untuk menginisialisai database
-        public function __construct($hostname, $username, $password, $database)
-        {
-            parent::__construct($hostname, $username, $password, $database);
-        }
-
-        // Fungsi untuk terhubung ke database
-        public function connect() 
-        {
-            return mysqli_connect($this->hostname, $this->username, $this->password, $this->database);
-        }
-
         // Fungsi untuk login
         public function store($data, $conn) 
         {

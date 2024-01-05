@@ -1,5 +1,5 @@
 <?php
-    include 'libraries/Database.php';
+    include 'libraries/Connection.php';
     include 'libraries/Category.php';
     
     session_start();
@@ -8,26 +8,26 @@
         header("Location: index");
     }
 
-    $category = new Category("Localhost", "root", "", "db_smart_task");
-    $conn = $category->connect();
     $user_id = $_SESSION['id'];
 
+    $categoryObject = new Category();
+
     // Daftar kategori
-    $index = $category->index($conn, $user_id);
+    $categories = $categoryObject->index($conn, $user_id);
 
     // Tambah
     if ( isset($_POST['add']) ) {
-        $category->store($_POST, $conn, $user_id);
+        $categoryObject->store($_POST, $conn, $user_id);
     }    
 
     // Edit
     if ( isset($_POST['edit']) ) {
-        $category->update($_POST, $conn, $user_id);
+        $categoryObject->update($_POST, $conn, $user_id);
     }
 
     // Hapus
     if ( isset($_GET['id']) ) {
-        $category->destroy($conn, $_GET['id']);
+        $categoryObject->destroy($conn, $_GET['id']);
     }
 
     // Header
@@ -62,9 +62,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if ( !is_null($index) && is_array($index) ) : ?>
+                        <?php if ( !is_null($categories) && is_array($categories) ) : ?>
                             <?php $no = 1 ?>
-                            <?php foreach ( $index as $row ) : ?>
+                            <?php foreach ( $categories as $row ) : ?>
                                 <tr>
                                     <td><?= $no; ?></td>
                                     <td><?= $row['name'] ?></td>

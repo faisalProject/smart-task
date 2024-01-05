@@ -1,6 +1,6 @@
 <?php
 
-    include 'libraries/Database.php';
+    include 'libraries/Connection.php';
     include 'libraries/Task.php';
     include 'libraries/Category.php';
 
@@ -10,33 +10,36 @@
         header("Location: index");
     }
 
-    // Bikin objek task
-    $task = new Task("Localhost", "root", "", "db_smart_task");
-    $conn = $task->connect();
-    
     $user_id = $_SESSION['id'];
 
+    $taskObject = new Task();
+
+    $categoryObject = new Category();
+
+    $categories = $categoryObject->index($conn, $user_id);
+    
+
     // Daftar tugas
-    $index = $task->index($conn, $user_id);
+    $tasks = $taskObject->index($conn, $user_id);
 
     // Tambah
     if ( isset($_POST['add']) ) {
-        $task->store($_POST, $conn, $user_id);
+        $taskObject->store($_POST, $conn, $user_id);
     }
 
     // Edit
     if ( isset($_POST['edit']) ) {
-        $task->update($_POST, $conn, $user_id);
+        $taskObject->update($_POST, $conn, $user_id);
     }
 
     // Hapus
     if ( isset($_GET['id']) ) {
-        $task->destroy($conn, $_GET['id']);
+        $taskObject->destroy($conn, $_GET['id']);
     }
 
     // Finished
     if ( isset($_POST['done']) ) {
-        $task->finished($_POST, $conn);
+        $taskObject->finished($_POST, $conn);
     }
 
     // Header
@@ -73,9 +76,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if ( !is_null($index) && is_array($index) ) : ?>
+                    <?php if ( !is_null($tasks) && is_array($tasks) ) : ?>
                         <?php $no = 1 ?>
-                        <?php foreach ( $index as $row ) : ?>
+                        <?php foreach ( $tasks as $row ) : ?>
                             <tr>
                                 <td><?= $no; ?></td>
                                 <td><?= $row['name'] ?></td>

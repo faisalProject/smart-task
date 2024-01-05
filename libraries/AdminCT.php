@@ -1,17 +1,7 @@
 <?php
 
-    class AdminCT extends Database 
+    class AdminCT  
     {
-        public function __construct($hostname, $username, $password, $database)
-        {
-            parent::__construct($hostname, $username, $password, $database);
-        }
-
-        public function connect() 
-        {
-            return mysqli_connect($this->hostname, $this->username, $this->password, $this->database);
-        }
-
         public function showAccount($conn)
         {
             $result = mysqli_query($conn, "SELECT COUNT(*) as users FROM users WHERE role = 'user'");

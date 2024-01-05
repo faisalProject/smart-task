@@ -1,14 +1,3 @@
-<?php
-
-    // Bikin objek category
-    $category = new Category("Localhost", "root", "", "db_smart_task");
-    $conn = $category->connect();
-
-    // Daftar kategori
-    $categories = $category->index($conn, $user_id);
-
-?>
-
 <!-- Modal -->
 <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

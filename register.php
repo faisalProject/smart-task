@@ -15,14 +15,13 @@
   // Header
   include 'layouts/header-login-register.php';
 
-  include 'libraries/Database.php';
+  include 'libraries/Connection.php';
   include 'libraries/Register.php';
 
-  $register = new Register("Localhost", "root", "", "db_smart_task");
-  $conn = $register->connect();
+  $registerObject = new Register();
 
   if ( isset($_POST['submit']) ) {
-    $register->store($_POST, $conn);
+    $registerObject->store($_POST, $conn);
   }
 
 ?>

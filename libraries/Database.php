@@ -1,16 +1,13 @@
 <?php
 
-    date_default_timezone_set("Asia/Jakarta");
-
-    // Abstract class Parent
-    abstract class Database 
+    class Database 
     {
-        protected $hostname,
+        public $hostname,
                   $username,
                   $password,
                   $database;
 
-        protected function __construct($hostname, $username, $password, $database)
+        public function __construct($hostname, $username, $password, $database)
         {
             $this->hostname = $hostname;
             $this->username = $username;
@@ -19,7 +16,10 @@
         }
 
         // Fungsi abstract
-        abstract protected function connect();
+        public function connect()
+        {
+            return mysqli_connect($this->hostname, $this->username, $this->password, $this->database);
+        }
     }
 
 ?>

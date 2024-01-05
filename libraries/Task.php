@@ -1,17 +1,7 @@
 <?php
 
-    class Task extends Database
+    class Task
     {
-        public function __construct($hostname, $username, $password, $database)
-        {
-            parent::__construct($hostname, $username, $password, $database);
-        }
-
-        public function connect()
-        {
-            return mysqli_connect($this->hostname, $this->username, $this->password, $this->database);
-        }
-
         // Fungsi untuk menampilkan daftar tugas
         public function index($conn, $user_id) 
         {   

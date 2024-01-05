@@ -15,7 +15,7 @@
                     <tr style="display: flex; align-items: center; gap: 20px;">
                         <td style="width: 30%">Nama</td>
                         <td>:</td>
-                        <td><?= $row['name'] ?></td>
+                        <td style="width: 60%;"><?= $row['name'] ?></td>
                     </tr>
                     <tr style="display: flex; align-items: center; gap: 20px;">
                         <td style="width: 30% !important">Deskripsi</td>

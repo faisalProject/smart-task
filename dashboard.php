@@ -1,6 +1,6 @@
 <?php
 
-  include 'libraries/Database.php';
+  include 'libraries/Connection.php';
   include 'libraries/Task.php';
   include 'libraries/Category.php';
 
@@ -10,25 +10,15 @@
     header("Location: index");
   }
 
-  $task = new Task("Localhost", "root", "", "db_smart_task");
-  $connT = $task->connect();
-
   $user_id = $_SESSION['id'];
 
-  // Finished
-  $finished = $task->displayTaskByStatusFinished($connT, $user_id);
+  $taskObject = new Task();
+  $finished =  $taskObject->displayTaskByStatusFinished($conn, $user_id);
+  $unfinished = $taskObject->displayTaskByStatusUnfinished($conn, $user_id);
+  $timelines = $taskObject->timeline($conn, $user_id);
 
-  // Unfinished
-  $unfinished = $task->displayTaskByStatusUnfinished($connT, $user_id);
-
-  $category = new Category("Localhost", "root", "", "db_smart_task");
-  $connC = $category->connect();
-
-  // Categories
-  $categories = $category->displaysListOfCategories($connC, $user_id);
-
-  // Timelines
-  $timelines = $task->timeline($connT, $user_id);
+  $categoryObject = new Category();
+  $categories = $categoryObject->displaysListOfCategories($conn, $user_id);
 
   // Header
   include 'layouts/header.php';

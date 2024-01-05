@@ -1,21 +1,20 @@
 <?php
     session_start();
     
-    include '../libraries/Database.php';
+    include '../libraries/Connection.php';
     include '../libraries/AdminCT.php';
 
     if ( $_SESSION['role'] !== 'admin' ) {
         header("Location: ../index");
     }
 
-    $admin = new AdminCT("Localhost", "root", "", "db_smart_task");
-    $conn = $admin->connect();
+    $adminObject = new AdminCT();
 
-    $accounts = $admin->showAccount($conn);
-    $finished = $admin->showTaskByFinished($conn);
-    $unfinished = $admin->showTaskByUnfinished($conn);
-    $categories = $admin->showCategories($conn);
-    $timelines = $admin->timeline($conn);
+    $accounts = $adminObject->showAccount($conn);
+    $finished = $adminObject->showTaskByFinished($conn);
+    $unfinished = $adminObject->showTaskByUnfinished($conn);
+    $categories = $adminObject->showCategories($conn);
+    $timelines = $adminObject->timeline($conn);
 
     // Header
     include '../layouts/header.php';
