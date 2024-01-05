@@ -281,12 +281,21 @@
               <hr class="dropdown-divider">
             </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="libraries/Logout">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
+            <?php if ( $_SESSION['role'] === 'admin' ) : ?>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="../libraries/Logout">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+                </a>
+              </li>
+            <?php else : ?>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="libraries/Logout">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+                </a>
+              </li>
+            <?php endif; ?>
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->

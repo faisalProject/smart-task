@@ -1,6 +1,1 @@
-Thanks for downloading this template!
-
-Template Name: NiceAdmin
-Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
+Aplikasi SmartTask adalah platform yang dirancang untuk membantu pengguna mengatur, melacak, dan menyelesaikan tugas-tugas mereka dengan efisien. Dengan antarmuka yang intuitif dan fitur-fitur yang dapat disesuaikan, aplikasi ini memberikan pengalaman yang nyaman dan efektif dalam manajemen tugas sehari-hari.
