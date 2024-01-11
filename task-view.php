@@ -60,7 +60,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" style="display: flex; justify-content: center; align-items: center; width: 100px; border-radius: 4px; gap: 10px" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle-fill"></i> Tutup</button>
-                <button type="submit" name="done" style="display: flex; justify-content: center; align-items: center; width: 100px; border-radius: 4px; gap: 10px" class="btn btn-primary" data-bs-dismiss="modal"><i class="bi bi-check-circle-fill"></i> Selesai</button>
+                <?php if ( $row['status'] === 'unfinished' ) : ?>
+                    <button type="submit" name="finished" style="display: flex; justify-content: center; align-items: center; width: 100px; border-radius: 4px; gap: 10px" class="btn btn-primary" data-bs-dismiss="modal"><i class="bi bi-check-circle-fill"></i> Selesai</button>
+                <?php else : ?>
+                    <button type="submit" name="unfinished" style="display: flex; justify-content: center; align-items: center; width: 165px; border-radius: 4px; gap: 10px" class="btn btn-primary" data-bs-dismiss="modal"><i class="bi bi-check-circle-fill"></i>Belum selesai</button>
+                <?php endif; ?>
             </div>
         </form>
     </div>

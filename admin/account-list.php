@@ -13,6 +13,16 @@
     $adminObject = new AdminCT();
     $users = $adminObject->listUserAccount($conn);
 
+    // Banned 
+    if ( isset($_POST['banned']) ) {
+        $adminObject->banned($_POST, $conn);
+    }
+
+    // Unbanned
+    if ( isset($_POST['unBanned']) ) {
+        $adminObject->unBanned($_POST, $conn);
+    }
+
     // Header
     include '../layouts/header.php';
 
@@ -56,6 +66,7 @@
                                     <td>
                                         <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
                                             <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-pencil-square"></i></button>
+                                            <?php include 'account-edit.php' ?>
                                             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#view<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-eye"></i></button>
                                             <?php include 'account-view.php' ?>
                                         </div>

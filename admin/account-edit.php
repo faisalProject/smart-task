@@ -1,4 +1,4 @@
-<div class="modal fade" id="view<?= $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit<?= $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form action="" method="post" class="modal-content">
             <div class="modal-header" style="height: 50px;">
@@ -52,6 +52,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" style="display: flex; justify-content: center; align-items: center; width: 100px; border-radius: 4px; gap: 10px" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle-fill"></i> Tutup</button>
+                <?php if ( $row['status_banned'] == 0 ) : ?>
+                    <button type="submit" name="banned" class="btn btn-primary" style="display: flex; justify-content: center; align-items: center; width: 100px; border-radius: 4px; gap: 10px"><i class="bi bi-person-fill-slash"></i> Banned</button>
+                <?php else : ?>
+                    <button type="submit" name="unBanned" class="btn btn-primary" style="display: flex; justify-content: center; align-items: center; width: 160px; border-radius: 4px; gap: 10px"><i class="bi bi-person-fill-check"></i> Batal banned</button>
+                <?php endif; ?>
             </div>
         </form>
     </div>

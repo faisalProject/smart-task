@@ -166,20 +166,22 @@
 
                     <?php if ( !is_null($timelines) && is_array($timelines) && !empty($timelines) ) : ?>
                         <?php foreach ( $timelines as $timeline ) : ?>
-                            <div class="activity-item d-flex">
-                            <?php if ( $timeline['days'] < '2' ) : ?>
-                                <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                            <?php elseif ( $timeline['days'] < '4' ) : ?>
-                                <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                            <?php else : ?>
-                                <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                            <?php if ( $timeline['days'] > '0' ) : ?>
+                                <div class="activity-item d-flex">
+                                    <?php if ( $timeline['days'] < '2' ) : ?>
+                                        <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
+                                    <?php elseif ( $timeline['days'] < '4' ) : ?>
+                                        <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
+                                    <?php else : ?>
+                                        <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                                    <?php endif; ?>
+                                    <div class="activity-content" style="display: flex; flex-direction: column; gap: 10px">
+                                        <p class="fw-bold" style="margin-bottom: 0 !important;"><?= $timeline['name'] ?></p>
+                                        <p style="font-size: 14px; color: #8898aa; margin-bottom: 0 !important;"><?= $timeline['cat_name'] ?></p>
+                                        <p style="margin-bottom: 0 !important;"><?= $timeline['days'] ?> Hari <?= $timeline['hours'] ?> jam <?= $timeline['minutes'] ?> menit</p>
+                                    </div>
+                                </div>  
                             <?php endif; ?>
-                            <div class="activity-content" style="display: flex; flex-direction: column; gap: 10px">
-                                <p class="fw-bold" style="margin-bottom: 0 !important;"><?= $timeline['name'] ?></p>
-                                <p style="font-size: 14px; color: #8898aa; margin-bottom: 0 !important;"><?= $timeline['cat_name'] ?></p>
-                                <p style="margin-bottom: 0 !important;"><?= $timeline['days'] ?> Hari <?= $timeline['hours'] ?> jam <?= $timeline['minutes'] ?> menit</p>
-                            </div>
-                            </div>
                         <?php endforeach; ?>
 
                     <?php else : ?>

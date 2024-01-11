@@ -128,6 +128,18 @@
         window.location.href = 'task-list';
       })
     }
+
+    function successBannedAndUnBannedAccount() {
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        html: document.getElementById("msg").value,
+        showConfirmButton: false,
+        timer: 1500
+      }).then(function() {
+        window.location.href = 'account-list';
+      })
+    }
   </script>
 
   <!-- Select2 -->

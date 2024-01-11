@@ -107,6 +107,14 @@
                 return false;
             }
         }
+
+        public function isBanned($conn, $user_id)
+        {
+            $result = mysqli_query($conn, "SELECT status_banned FROM users WHERE id = '$user_id' AND role = 'user'");
+
+            $row = mysqli_fetch_assoc($result);
+            return $row;
+        }
     }
 
 ?>

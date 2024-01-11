@@ -1262,3 +1262,28 @@ h6 {
 .select2-container {
   z-index: 10000; /* Atur nilai sesuai kebutuhan Anda */
 }
+
+.about-contents {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.about-contents > .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.about-contents > p {
+  color: #012970;
+  margin-bottom: 0 !important;
+  text-align: justify;
+}
+
+.about-contents > p > span {
+  margin-left: 40px;
+}

@@ -74,6 +74,65 @@
 
             return $rows;
         }
+
+        public function banned($data, $conn) 
+        {
+            $id = $data['id'];
+
+            mysqli_query($conn, "UPDATE users SET status_banned = 1  WHERE id = '$id'");
+
+            $isSuccess = mysqli_affected_rows($conn);
+
+            // Kondisi jika sukses
+            if ( $isSuccess === 1 ) {
+                $message = '<p><b>Akun berhasil dibanned!</b></p>';
+                echo "<body onload='successBannedAndUnBannedAccount()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
+                return false;
+            }
+        }
+
+        public function unBanned($data, $conn) 
+        {
+            $id = $data['id'];
+
+            mysqli_query($conn, "UPDATE users SET status_banned = 0  WHERE id = '$id'");
+
+            $isSuccess = mysqli_affected_rows($conn);
+
+            // Kondisi jika sukses
+            if ( $isSuccess === 1 ) {
+                $message = '<p><b>Akun batal dibanned!</b></p>';
+                echo "<body onload='successBannedAndUnBannedAccount()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
+                return false;
+            }
+        }
+
+        public function showTasks($conn) 
+        {
+            $result = mysqli_query($conn, "SELECT t.id, t.name, c.name as category, t.priority, t.status, u.username FROM task t
+            LEFT JOIN categories c on t.category_id = c.id 
+            LEFT JOIN users u on t.user_id = u.id WHERE t.status_deleted = 0 ORDER BY t.updated_date DESC;");
+
+            $rows = array();
+            while ( $row = mysqli_fetch_assoc($result) ) {
+                $rows[] = $row;
+            }
+
+            return $rows;
+        }
+
+        public function showCategoriesByUser($conn)
+        {
+            $result = mysqli_query($conn, "SELECT c.id, c.name, c.created_date, c.updated_date, u.username FROM categories c
+            LEFT JOIN users u on c.user_id = u.id WHERE c.status_deleted = 0 ORDER BY c.updated_date DESC");
+
+            $rows = array();
+            while ( $row = mysqli_fetch_assoc($result) ) {
+                $rows[] = $row;
+            }
+
+            return $rows;
+        }
     }
 
 ?>

@@ -22,6 +22,9 @@
     // Daftar tugas
     $tasks = $taskObject->index($conn, $user_id);
 
+    // Is banned
+    $isBanned = $taskObject->isBanned($conn, $user_id);
+
     // Tambah
     if ( isset($_POST['add']) ) {
         $taskObject->store($_POST, $conn, $user_id);
@@ -38,8 +41,13 @@
     }
 
     // Finished
-    if ( isset($_POST['done']) ) {
+    if ( isset($_POST['finished']) ) {
         $taskObject->finished($_POST, $conn);
+    }
+
+    // Unfinished
+    if ( isset($_POST['unfinished']) ) {
+        $taskObject->unfinished($_POST, $conn);
     }
 
     // Header
@@ -56,7 +64,7 @@
               <h5 class="card-title">Daftar Tugas</h5>
               
               <!-- Button trigger modal -->
-            <?php if ( $_SESSION['status_banned'] == 0 ) : ?>
+            <?php if ( $isBanned['status_banned'] == 0 ) : ?>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add" style="display: flex; justify-content: center; align-items: center; width: 130px; border-radius: 4px; gap: 10px">
                     <i class="bi bi-plus-circle-fill"></i> Tambah
                 </button>
@@ -108,7 +116,7 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <?php if ( $_SESSION['status_banned'] == 0 ) : ?>
+                                    <?php if ( $isBanned['status_banned'] == 0 ) : ?>
                                         <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
                                             <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-pencil-square"></i></button>
                                             <?php include 'task-edit.php'; ?>

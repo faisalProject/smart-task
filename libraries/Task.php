@@ -159,6 +159,21 @@
             }
         }
 
+        public function unfinished($data, $conn) 
+        {
+            $id = $data['id'];
+            mysqli_query($conn, "UPDATE task SET status = 'unfinished' WHERE id = '$id'");
+
+            $isSuccess = mysqli_affected_rows($conn);
+
+            // Kondisi jika sukses
+            if ( $isSuccess === 1 ) {
+                $message = '<p><b>Tugas batal diselesaikan!</b></p>';
+                echo "<body onload='successTask()'><input type='hidden' id='msg' value='" . $message . "''></input></body>";
+                return false;
+            }
+        }
+
         public function timeline($conn, $user_id)
         {
             $result = mysqli_query($conn, "SELECT 
@@ -178,6 +193,14 @@
             }
 
             return $rows;
+        }
+
+        public function isBanned($conn, $user_id)
+        {
+            $result = mysqli_query($conn, "SELECT status_banned FROM users WHERE id = '$user_id' AND role = 'user'");
+
+            $row = mysqli_fetch_assoc($result);
+            return $row;
         }
     }
 

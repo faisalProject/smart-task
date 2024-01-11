@@ -15,6 +15,9 @@
     // Daftar kategori
     $categories = $categoryObject->index($conn, $user_id);
 
+    // Is banned
+    $isBanned = $categoryObject->isBanned($conn, $user_id);
+
     // Tambah
     if ( isset($_POST['add']) ) {
         $categoryObject->store($_POST, $conn, $user_id);
@@ -42,7 +45,7 @@
             <div class="card-body">
               <h5 class="card-title">Daftar Kategori</h5>
               
-            <?php if ( $_SESSION['status_banned'] == 0 ) : ?>
+            <?php if ( $isBanned['status_banned'] == 0 ) : ?>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add" style="display: flex; justify-content: center; align-items: center; width: 130px; border-radius: 4px; gap: 10px">
                     <i class="bi bi-plus-circle-fill"></i> Tambah
@@ -81,7 +84,7 @@
                                     <td><?= $row['created_date'] ?></td>
                                     <td><?= $row['updated_date'] ?></td>
                                     <td>
-                                        <?php if ( $_SESSION['status_banned'] == 0 ) : ?>
+                                        <?php if ( $isBanned['status_banned'] == 0 ) : ?>
                                             <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
                                                 <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $row['id'] ?>" style="display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 4px; gap: 10px;"><i class="bi bi-pencil-square"></i></button>
                                                 <?php include 'category-edit.php'; ?>
