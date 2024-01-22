@@ -166,7 +166,7 @@
 
                     <?php if ( !is_null($timelines) && is_array($timelines) && !empty($timelines) ) : ?>
                         <?php foreach ( $timelines as $timeline ) : ?>
-                            <?php if ( $timeline['days'] > '0' ) : ?>
+                            <?php if ( $timeline['days'] >= '0' ) : ?>
                                 <div class="activity-item d-flex">
                                     <?php if ( $timeline['days'] < '2' ) : ?>
                                         <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
